@@ -13,18 +13,20 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     <script type="text/javascript" src="js/graph.js"></script>
+    <script type="text/javascript" src="https://d3js.org/topojson.v0.min.js"></script>
 </head>
 <body>
-     <div class="col-md-8">
-    <h4>Avg HDI per continent</h4>
-   <div id="average_hdi_score_by_continent"></div>
-    </div>
     
-    <hr>
-    
+    <div class = "Country Section">
+    <h2>Country Specific Data</h2>
     <div class="col-md-4">
-    <h4>Choose Country</h4>
+    <h3>Choose Country</h3>
     <div id="choose_by_country"></div>
+    <hr>
+    <h4>Summary Of Country's Scores</h4>
+    <div id="average_hdi_score"> <h4>The average HDI score for your selection is: </h4></div>
+    <div id ="display_rank"> <h4>The HDI rank of your selection is: </h4></div>
+    <div id ="display_life_expectancy"><h4>The life expectancy rate of your selection is: </h4></div>
     </div>
 
     
@@ -32,13 +34,17 @@
     <h4>HDI Score By Country</h4>
     <div id="hdi_rank_by_country"></div>
     </div>
-    
-    <div class="col-md-4">
-    <div id="average_hdi_score"> <h4>The average HDI score for your selection is: </h4></div>
-    <div id ="display_rank"> <h4>The HDI rank of your selection is: </h4></div>
+ </div>
+ 
+ <div class = "Continent Section">
+    <h2>Continent Specific Data</h2>
+    <div class="col-md-8">
+    <h4>Avg HDI per continent</h4>
+   <div id="average_hdi_score_by_continent"></div>
     </div>
-
     
+    <hr>
+
     <div class="col-md-6">
     <h4>Countries with highest HDI score</h4>
     <div id="top_10_countries"></div>
@@ -50,12 +56,24 @@
     </div>
     
     
-    
     <div class="col-md-6">
     <h4>Number of countries per continent</h4>
    <div id="number_of_countries"></div>
     </div>
-    
+</div> 
+
+
+      <div class="col-md-12">
+    <h4>Average Life Expectancy per Continent</h4>
+   <div id="life_expectancy_average"></div>
+    </div>
+  
+
+<div class="col-md-6">
+    <h4>Countries with highest life expectancy</h4>
+    <div id="top_10_expectancy"></div>
+    </div>
+   
    
     
     

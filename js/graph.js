@@ -9,7 +9,7 @@ queue()
         developmentData.forEach(function (d){
             d.Human_Development_Index = parseFloat(d.Human_Development_Index);
             d.HDI_Rank= parseInt(d["hdi_rank"]);
-            d.Gross_National_Income = parseInt(d["gross_national_income_per_capita"]);
+            d.life_expectancy_at_birth = parseInt(d["life_expectancy_at_birth"]);
         })
         
         show_country_rank(ndx);
@@ -20,6 +20,10 @@ queue()
         average_hdi_score_by_continent(ndx, "#average_hdi_score_by_continent");
         display_rank(ndx);
         choose_by_country(ndx);
+        life_expectancy_average(ndx, "#life_expectancy_average");
+        top_10_expectancy(ndx);
+        display_life_expectancy(ndx);
+        
         dc.renderAll();
     }
 ///---------------ALL COUNTRIES HDI SCORE------------------//
@@ -44,7 +48,7 @@ function show_country_rank(ndx) {
       
     }
 
-//Top 10 Countries by score..................... 
+//Top 10 Countries by HDI score..................... 
 function top_10_countries(ndx) {
   
   var top_country_dim = ndx.dimension(dc.pluck('country'));
@@ -185,7 +189,7 @@ function number_of_countries(ndx) {
             .group(number_of_countries)
             .transitionDuration(500)
             .x(d3.scale.ordinal())
-            .xUnits(dc.units.ordinal)
+            .xUnits(dc.units .ordinal)
             .xAxisLabel("Continent")
             .yAxisLabel("Countries")
             .yAxis().ticks(20);
@@ -202,5 +206,76 @@ function choose_by_country(ndx){
             .group(country_group);
 } 
 
+// Average Life Expectancy at Birth.................//
 
+function life_expectancy_average(ndx, element) {
+  let continent_dim = ndx.dimension(dc.pluck('continent'));
+  
+  let birth_by_continent = continent_dim.group().reduce(
+        function (p, v) {
+            p.count++;
+            p.total += v.life_expectancy_at_birth;
+            p.average = p.total / p.count;
+            return p;
+        },
+        function (p, v) {
+            p.count--;
+            if(p.count > 0){
+                p.total -= v.life_expectancy_at_birth;
+                p.average = p.total / p.count; 
+            }else{
+                p.total = 0;
+                p.average = 0;
+            }
+            return p;
+        },
+        function (){
+            return {count:0, total:0, average:0};
+        });
+        
+        console.log(birth_by_continent.all());
+        
+     dc.barChart(element)
+        .width(800)
+        .height(300)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(continent_dim)
+        .group(birth_by_continent)
+        .valueAccessor(function(d){
+            return d.value.average;
+        })
+        .transitionDuration(500)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Continents")
+        .yAxisLabel("Avg Life Expectancy score")
+        .yAxis().ticks(20);
+}
 
+// Display Country Age......//// 
+
+function top_10_expectancy(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var expectancy_rank_group = top_country_dim.group().reduceSum(dc.pluck('life_expectancy_at_birth'));
+
+  
+  dc.rowChart("#top_10_expectancy")
+        .width(600)
+        .height(330)
+        .dimension(top_country_dim)
+        .group(expectancy_rank_group)
+        .cap(10)
+        .othersGrouper(false)
+        .xAxis().ticks(10);
+}
+
+function display_life_expectancy(ndx) {
+  
+  var country_dim = ndx.dimension(dc.pluck('country'));
+  var expectancy_rank_group = country_dim.group().reduceSum(dc.pluck('life_expectancy_at_birth'));
+        
+   dc.numberDisplay("#display_life_expectancy")
+        .formatNumber(d3.format("," + " out of 188 "))
+        .group(expectancy_rank_group);
+}
