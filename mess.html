@@ -1,0 +1,62 @@
+ var  rankColors = d3.scale.ordinal()
+    .domain(["Switzerland", "Norway"])
+    .range(["pink", "blue"]);
+    
+    
+    let eDim = ndx.dimension(dc.pluck("country"));
+    let rankDim = ndx.dimension(function(d){
+        return [d.hdi_rank, d.country, d.Human_Development_Index, d.Gross_National_Income];
+    });
+    
+    let countryRankGroup = rankDim.group();
+    
+    let minRank = eDim.bottom(1)[0].Human_Development_Index;
+    let maxRank = eDim.top(1)[0].Human_Development_Index;
+    
+   dc.scatterPlot("#hdi_rank_by_country")
+        .width(800)
+        .height(400)
+        .x(d3.scale.linear().domain([minRank,maxRank]))
+        .brushOn(true)
+        .symbolSize(8)
+        .clipPadding(10)
+        .yAxisLabel("Rank_Score")
+        .xAxisLabel("country")
+        .title(function (d) {
+            return d.key[1] + " has a HDI score " + d.key[2];
+        })
+        .colorAccessor(function (d) {
+            return d.key[0];
+        })
+        .colors(rankColors)
+        .dimension(rankDim)
+        .group(countryRankGroup)
+        .margins({top: 10, right: 50, bottom: 75, left: 75});
+        
+}
+
+
+
+var sum = 0;  
+var data = d3.nest()
+  .key(function(d) {
+     return d.Human_Development_Index;
+   })
+   .rollup(function(d) {
+     return d3.sum(d, function(g) {
+       sum += +g.Human_Development_Index;
+       return g.Human_Development_Index;
+     });
+   }).entries("data/human_development.csv");
+
+var avg = sum / data.length;
+console.log(avg);
+
+dc.numberDisplay("average_hdi_score")
+        .formatNumber(d3.format(".1f"))
+        .valueAccessor(function (d) {
+            return d.value;
+        })
+        .group(Human_Development_Index);
+
+}
