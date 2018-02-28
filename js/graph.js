@@ -9,7 +9,9 @@ queue()
         developmentData.forEach(function (d){
             d.Human_Development_Index = parseFloat(d.Human_Development_Index);
             d.HDI_Rank= parseInt(d["hdi_rank"]);
-            d.life_expectancy_at_birth = parseInt(d["life_expectancy_at_birth"]);
+            d.life_expectancy_at_birth = parseFloat(d["life_expectancy_at_birth"]);
+            d.gross_national_income_per_capita= parseInt(d["gross_national_income_per_capita"]);
+          
         })
         
         show_country_rank(ndx);
@@ -21,8 +23,11 @@ queue()
         display_rank(ndx);
         choose_by_country(ndx);
         life_expectancy_average(ndx, "#life_expectancy_average");
+        average_income_by_continent(ndx);
         top_10_expectancy(ndx);
         display_life_expectancy(ndx);
+        show_life_expectancy_to_HDI_correlation(ndx);
+        show_GNI_to_HDI_correlation(ndx);
         
         dc.renderAll();
     }
@@ -233,9 +238,8 @@ function life_expectancy_average(ndx, element) {
             return {count:0, total:0, average:0};
         });
         
-        console.log(birth_by_continent.all());
         
-     dc.barChart(element)
+       dc.barChart(element)
         .width(800)
         .height(300)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
@@ -251,6 +255,7 @@ function life_expectancy_average(ndx, element) {
         .yAxisLabel("Avg Life Expectancy score")
         .yAxis().ticks(20);
 }
+
 
 // Display Country Age......//// 
 
@@ -270,6 +275,9 @@ function top_10_expectancy(ndx) {
         .xAxis().ticks(10);
 }
 
+
+//Average Age Display // 
+
 function display_life_expectancy(ndx) {
   
   var country_dim = ndx.dimension(dc.pluck('country'));
@@ -279,3 +287,106 @@ function display_life_expectancy(ndx) {
         .formatNumber(d3.format("," + " out of 188 "))
         .group(expectancy_rank_group);
 }
+
+// Display Country Income......//// 
+
+function average_income_by_continent(ndx) {
+
+   var country_dim = ndx.dimension(dc.pluck('country'));
+   var gni_group_dim = country_dim.group().reduceSum(dc.pluck('gross_national_income_per_capita'));
+   
+   dc.barChart("#average_income_by_continent")
+            .width(900)
+            .height(300)
+            .margins({top: 10, right: 50, bottom: 50, left: 50})
+            .dimension(country_dim)
+            .group(gni_group_dim)
+            .transitionDuration(500)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units.ordinal)
+            .xAxisLabel("Country")
+            .yAxisLabel("HDI")
+            .yAxis().ticks(20);
+      
+    }
+
+//Correlation between life expectancy and HDI by continent.
+
+function show_life_expectancy_to_HDI_correlation(ndx) {
+
+  let lDim = ndx.dimension(dc.pluck("life_expectancy_at_birth"));
+    let expectancyDim = ndx.dimension(function (d) {
+	      return [d.life_expectancy_at_birth, d.Human_Development_Index];	
+});
+    
+    let expectancyHDIGroup = expectancyDim.group();
+    
+    let minExpectancy = lDim.bottom(1)[0].life_expectancy_at_birth;
+    let maxExpectancy = lDim.top(1)[0].life_expectancy_at_birth;
+  
+  console.log(expectancyHDIGroup.all()); 
+
+
+  dc.scatterPlot("#show_life_expectancy_to_HDI_correlation")
+        .width(800)
+        .height(400)
+        .x(d3.scale.linear().domain([minExpectancy,maxExpectancy]))
+        .brushOn(false)
+        .symbolSize(8)
+        .clipPadding(10)
+        .yAxisLabel("HDI")
+        .xAxisLabel("Life Expectancy")
+        .title(function (d) {
+            return " Life Expectancy: " + d.key[0] + " years and HDI is: " + d.key[1];
+        })
+        .dimension(expectancyDim)
+        .group(expectancyHDIGroup)
+        .margins({top: 10, right: 50, bottom: 75, left: 75});
+        
+}
+
+
+
+//Correlation between GDI and HDI./////////////
+
+function show_GNI_to_HDI_correlation(ndx) {
+  var  continentColors = d3.scale.ordinal()
+    .domain(["Africa", "Asia", "Europe", "Oceania", "South America", "North America"])
+    .range(["pink", "blue", "orange", "yellow", "red", "green"]);
+
+  let lDim = ndx.dimension(dc.pluck("gross_national_income_per_capita"));
+    let incomeDim = ndx.dimension(function (d) {
+	      return [d.gross_national_income_per_capita, d.Human_Development_Index, d.continent];	
+});
+    
+    let incomeHDIGroup = incomeDim.group();
+    
+    let minGNI = lDim.bottom(1)[0].gross_national_income_per_capita;
+    let maxGNI = lDim.top(1)[0].gross_national_income_per_capita;
+  
+    console.log(incomeHDIGroup.all()); 
+
+
+  dc.scatterPlot("#show_GNI_to_HDI_correlation")
+        .width(800)
+        .height(400)
+        .x(d3.scale.linear().domain([minGNI,maxGNI]))
+        .brushOn(true)
+        .symbolSize(8)
+        .clipPadding(10)
+        .yAxisLabel("HDI")
+        .xAxisLabel("Gross National Income Per Capita")
+        .title(function (d) {
+            return " GNI is: " + d.key[0] + " and HDI is: " + d.key[1];
+        })
+        .colorAccessor(function (d) {
+            return d.key[2];
+        })
+        .colors(continentColors)
+        .dimension(incomeDim)
+        .group(incomeHDIGroup)
+        .margins({top: 10, right: 50, bottom: 75, left: 75});
+        
+}
+        
+        
