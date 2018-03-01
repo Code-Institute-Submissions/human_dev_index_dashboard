@@ -11,23 +11,26 @@ queue()
             d.HDI_Rank= parseInt(d["hdi_rank"]);
             d.life_expectancy_at_birth = parseFloat(d["life_expectancy_at_birth"]);
             d.gross_national_income_per_capita= parseInt(d["gross_national_income_per_capita"]);
-          
-        })
+            d.mean_years_of_education = parseFloat(d["mean_years_of_education"]);
+        });
         
         show_country_rank(ndx);
         top_10_countries(ndx);
         lowest_10_countries(ndx);
-        number_of_countries(ndx);
         average_hdi_score(ndx, "#average_hdi_score");
         average_hdi_score_by_continent(ndx, "#average_hdi_score_by_continent");
         display_rank(ndx);
         choose_by_country(ndx);
         life_expectancy_average(ndx, "#life_expectancy_average");
-        average_income_by_continent(ndx);
+        average_income_by_continent(ndx, "#average_income_by_continent");
         top_10_expectancy(ndx);
+        lowest_10_expectancy(ndx);
         display_life_expectancy(ndx);
+        display_gross_income(ndx);
+        display_mean_education(ndx);
         show_life_expectancy_to_HDI_correlation(ndx);
         show_GNI_to_HDI_correlation(ndx);
+        show_Education_to_HDI_correlation(ndx);
         
         dc.renderAll();
     }
@@ -38,9 +41,10 @@ function show_country_rank(ndx) {
    var Human_Development_Index_group = country_dim.group().reduceSum(dc.pluck('Human_Development_Index'));
    
    dc.barChart("#hdi_rank_by_country")
-            .width(900)
+            .width(1200)
             .height(300)
-            .margins({top: 10, right: 50, bottom: 50, left: 50})
+            .barPadding(5)
+            .margins({top: 10, right: 100, bottom: 50, left: 100})
             .dimension(country_dim)
             .group(Human_Development_Index_group)
             .transitionDuration(500)
@@ -49,7 +53,6 @@ function show_country_rank(ndx) {
             .xAxisLabel("Country")
             .yAxisLabel("HDI")
             .yAxis().ticks(20);
-        
       
     }
 
@@ -61,11 +64,11 @@ function top_10_countries(ndx) {
 
   
   dc.rowChart("#top_10_countries")
-        .width(600)
-        .height(330)
+        .width(400)
+        .height(200)
         .dimension(top_country_dim)
         .group(hdi_rank_group)
-        .cap(10)
+        .cap(5)
         .othersGrouper(false)
         .xAxis().ticks(10);
 }
@@ -79,11 +82,11 @@ function lowest_10_countries(ndx) {
   
   
   dc.rowChart("#lowest_10_countries")
-        .width(600)
-        .height(330)
+        .width(400)
+        .height(200)
         .dimension(lowest_country_dim)
         .group(hdi_rank_group)
-        .cap(10)
+        .cap(5)
         .othersGrouper(false)
         .xAxis().ticks(10);
 }
@@ -164,9 +167,9 @@ function average_hdi_score_by_continent(ndx, element) {
         
     
     dc.barChart(element)
-        .width(800)
-        .height(300)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .width(700)
+        .height(500)
+        .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(hdi_by_continent)
         .valueAccessor(function(d){
@@ -180,25 +183,7 @@ function average_hdi_score_by_continent(ndx, element) {
         .yAxis().ticks(20);
 }
 
-//Number of countries per continent. 
-function number_of_countries(ndx) {
-  
-   var continent_dim = ndx.dimension(dc.pluck('continent'));
-   var number_of_countries = continent_dim.group().reduceCount(dc.pluck('country'));
-   
-   dc.barChart("#number_of_countries")
-            .width(900)
-            .height(300)
-            .margins({top: 10, right: 50, bottom: 50, left: 50})
-            .dimension(continent_dim)
-            .group(number_of_countries)
-            .transitionDuration(500)
-            .x(d3.scale.ordinal())
-            .xUnits(dc.units .ordinal)
-            .xAxisLabel("Continent")
-            .yAxisLabel("Countries")
-            .yAxis().ticks(20);
-}
+
 
 //DROPDOWN MENU SECTION..............................//
     
@@ -240,8 +225,8 @@ function life_expectancy_average(ndx, element) {
         
         
        dc.barChart(element)
-        .width(800)
-        .height(300)
+        .width(700)
+        .height(500)
         .margins({top: 10, right: 50, bottom: 30, left: 50})
         .dimension(continent_dim)
         .group(birth_by_continent)
@@ -266,11 +251,28 @@ function top_10_expectancy(ndx) {
 
   
   dc.rowChart("#top_10_expectancy")
-        .width(600)
-        .height(330)
+        .width(400)
+        .height(200)
         .dimension(top_country_dim)
         .group(expectancy_rank_group)
-        .cap(10)
+        .cap(5)
+        .othersGrouper(false)
+        .xAxis().ticks(10);
+}
+
+function lowest_10_expectancy(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var expectancy_rank_group = top_country_dim.group().reduceSum(dc.pluck('life_expectancy_at_birth'));
+
+  
+  dc.rowChart("#lowest_10_expectancy")
+        .width(400)
+        .height(200)
+        .dimension(top_country_dim)
+        .group(expectancy_rank_group)
+        .ordering(function(d){ return d.value; })
+        .cap(5)
         .othersGrouper(false)
         .xAxis().ticks(10);
 }
@@ -288,35 +290,84 @@ function display_life_expectancy(ndx) {
         .group(expectancy_rank_group);
 }
 
+function display_gross_income(ndx) {
+  
+  var country_dim = ndx.dimension(dc.pluck('country'));
+  var gross_income_group = country_dim.group().reduceSum(dc.pluck('gross_national_income_per_capita'));
+        
+   dc.numberDisplay("#display_gross_income")
+        .formatNumber(d3.format(","))
+        .group(gross_income_group);
+}
+
+function display_mean_education(ndx) {
+  
+  var country_dim = ndx.dimension(dc.pluck('country'));
+  var mean_education_group = country_dim.group().reduceSum(dc.pluck('mean_years_of_education'));
+        
+   dc.numberDisplay("#display_mean_education")
+        .formatNumber(d3.format(","))
+        .group(mean_education_group);
+}
+
 // Display Country Income......//// 
 
-function average_income_by_continent(ndx) {
+function average_income_by_continent(ndx, element) {
+    
+let continent_dim = ndx.dimension(dc.pluck('continent'));
+  
+  let income_by_continent = continent_dim.group().reduce(
+        function (p, v) {
+            p.count++;
+            p.total += v.gross_national_income_per_capita;
+            p.average = p.total / p.count;
+            return p;
+        },
+        function (p, v) {
+            p.count--;
+            if(p.count > 0){
+                p.total -= v.gross_national_income_per_capita;
+                p.average = p.total / p.count; 
+            }else{
+                p.total = 0;
+                p.average = 0;
+            }
+            return p;
+        },
+        function (){
+            return {count:0, total:0, average:0};
+        });
+        
+        
+       dc.barChart(element)
+        .width(700)
+        .height(500)
+        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .dimension(continent_dim)
+        .group(income_by_continent)
+        .valueAccessor(function(d){
+            return d.value.average;
+        })
+        .transitionDuration(500)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Continents")
+        .yAxisLabel("Avg Income")
+        .yAxis().ticks(20);
+}
 
-   var country_dim = ndx.dimension(dc.pluck('country'));
-   var gni_group_dim = country_dim.group().reduceSum(dc.pluck('gross_national_income_per_capita'));
-   
-   dc.barChart("#average_income_by_continent")
-            .width(900)
-            .height(300)
-            .margins({top: 10, right: 50, bottom: 50, left: 50})
-            .dimension(country_dim)
-            .group(gni_group_dim)
-            .transitionDuration(500)
-            .x(d3.scale.ordinal())
-            .xUnits(dc.units.ordinal)
-            .xAxisLabel("Country")
-            .yAxisLabel("HDI")
-            .yAxis().ticks(20);
-      
-    }
+  
 
 //Correlation between life expectancy and HDI by continent.
 
 function show_life_expectancy_to_HDI_correlation(ndx) {
+  var  continentColors = d3.scale.ordinal()
+    .domain(["Africa", "Asia", "Europe", "Oceania", "South America", "North America"])
+    .range(["pink", "blue", "orange", "yellow", "red", "green"]);
 
   let lDim = ndx.dimension(dc.pluck("life_expectancy_at_birth"));
     let expectancyDim = ndx.dimension(function (d) {
-	      return [d.life_expectancy_at_birth, d.Human_Development_Index];	
+	      return [d.life_expectancy_at_birth, d.Human_Development_Index, d.gross_national_income_per_capita];	
 });
     
     let expectancyHDIGroup = expectancyDim.group();
@@ -331,7 +382,7 @@ function show_life_expectancy_to_HDI_correlation(ndx) {
         .width(800)
         .height(400)
         .x(d3.scale.linear().domain([minExpectancy,maxExpectancy]))
-        .brushOn(false)
+        .brushOn(true)
         .symbolSize(8)
         .clipPadding(10)
         .yAxisLabel("HDI")
@@ -339,6 +390,10 @@ function show_life_expectancy_to_HDI_correlation(ndx) {
         .title(function (d) {
             return " Life Expectancy: " + d.key[0] + " years and HDI is: " + d.key[1];
         })
+        .colorAccessor(function (d) {
+            return d.key[2];
+        })
+        .colors(continentColors)
         .dimension(expectancyDim)
         .group(expectancyHDIGroup)
         .margins({top: 10, right: 50, bottom: 75, left: 75});
@@ -363,9 +418,6 @@ function show_GNI_to_HDI_correlation(ndx) {
     
     let minGNI = lDim.bottom(1)[0].gross_national_income_per_capita;
     let maxGNI = lDim.top(1)[0].gross_national_income_per_capita;
-  
-    console.log(incomeHDIGroup.all()); 
-
 
   dc.scatterPlot("#show_GNI_to_HDI_correlation")
         .width(800)
@@ -389,4 +441,41 @@ function show_GNI_to_HDI_correlation(ndx) {
         
 }
         
+// Correlation between Education and HDI // 
+
+function show_Education_to_HDI_correlation(ndx) {
+  var  continentColors = d3.scale.ordinal()
+    .domain(["Africa", "Asia", "Europe", "Oceania", "South America", "North America"])
+    .range(["pink", "blue", "orange", "yellow", "red", "green"]);
+
+  let lDim = ndx.dimension(dc.pluck("mean_years_of_education"));
+    let educationDim = ndx.dimension(function (d) {
+	      return [d.mean_years_of_education, d.Human_Development_Index, d.continent];	
+});
+    
+    let educationHDIGroup = educationDim.group();
+    
+    let minEdu = lDim.bottom(1)[0].mean_years_of_education;
+    let maxEdu = lDim.top(1)[0].mean_years_of_education;
+
+  dc.scatterPlot("#show_Education_to_HDI_correlation")
+        .width(800)
+        .height(400)
+        .x(d3.scale.linear().domain([minEdu,maxEdu]))
+        .brushOn(true)
+        .symbolSize(8)
+        .clipPadding(10)
+        .yAxisLabel("HDI")
+        .xAxisLabel("Mean years of Education")
+        .title(function (d) {
+            return " Years of education are: " + d.key[0] + " and HDI is: " + d.key[1];
+        })
+        .colorAccessor(function (d) {
+            return d.key[2];
+        })
+        .colors(continentColors)
+        .dimension(educationDim)
+        .group(educationHDIGroup)
+        .margins({top: 10, right: 50, bottom: 75, left: 75});
         
+}

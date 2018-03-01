@@ -13,66 +13,150 @@
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
     <script type="text/javascript" src="js/graph.js"></script>
-    <script type="text/javascript" src="https://d3js.org/topojson.v0.min.js"></script>
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="hd.css">
 </head>
 <body>
     
-    <div class = "Country Section">
+    <div id="introductionSection">
+    <div class="row">
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+    <h2>Introduction</h2> 
+    <p class = "introductionPara">The HDI was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone. The HDI study measures achievment within three primary dimensions and their correlating indicators; Long and Happy Life (Life Expectancy), knowledge (education) and standard of living (Gross National Income). The HDI simplifies and captures only part of what human development entails. This study does not reflect on inequalities or poverty. </p>
+    </div>
+    </div>
+    </div>
+    <hr>
+    
+    <div id = "countrySection">
+    <div class="row">
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
     <h2>Country Specific Data</h2>
-    <div class="col-md-4">
     <h3>Choose Country</h3>
-    <div id="choose_by_country"></div>
-    <hr>
-    <h4>Summary Of Country's Scores</h4>
-    <div id="average_hdi_score"> <h4>The average HDI score for your selection is: </h4></div>
-    <div id ="display_rank"> <h4>The HDI rank of your selection is: </h4></div>
-    <div id ="display_life_expectancy"><h4>The life expectancy rate of your selection is: </h4></div>
+    <br>
+    <p>View the scores for a country of your choice by clicking on a bar on the bar chart or by selecting a country from the drop down menu. </p>
+    <br>
+    </div>
+    </div>
+    </div>
+    
+    <div class = "chooseCountry container-fluid">
+    <div class="row">
+        
+    <div class="col-3 text-center">
+    <span id="choose_by_country"></span>
+    </div>
+    
+    <br>
+    
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+    <h2>HDI Score By Country</h2>
+    <span id="hdi_rank_by_country"></span>
+    </div>
+    
+    </div>
     </div>
 
     
-    <div class="col-md-8">
-    <h4>HDI Score By Country</h4>
-    <div id="hdi_rank_by_country"></div>
+    <hr>
+    
+    <div class = "scoreSection">
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+    <h2>Summary Of Country's Scores</h2>
+     <br>
     </div>
- </div>
- 
- <div class = "Continent Section">
+   
+    <div class = "scoreCards1 container-fluid">
+    <div class="row">
+    
+    <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
+        <div class="card">
+        <h4>The average HDI score for your selection is: </h4><p id="average_hdi_score"></p>
+        </div>
+        </div>
+    
+    <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
+        <div class="card">
+        <h4>The HDI rank of your selection is: </h4><p id ="display_rank"></p>
+        </div>
+        </div>
+        
+     <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
+        <div class="card">
+        <h4>The life expectancy rate of your selection is: </h4><p id="display_life_expectancy"></p>
+        </div>
+        </div>
+    
+    </div>
+    </div>
+    
+    <br>
+    <br>
+    
+    <div class = "scoreCards2 container-fluid">
+    <div class="row">
+        
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
+        <div class="card">
+        <h4>The gross annual income per capita for your selection is: </h4><p id="display_gross_income"></p>
+        </div>
+        </div>
+        
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
+        <div class="card">
+        <h4>The mean years of education for adults 25+ for your selection is: </h4><p id="display_mean_education"></p>
+        </div>
+        </div>
+        
+    </div>
+    </div>
+   </div>
+   
+   <br>
+    
+ <div id="continentSection">
+    <div class="row">
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
     <h2>Continent Specific Data</h2>
-    <div class="col-md-8">
-    <h4>Avg HDI per continent</h4>
-   <div id="average_hdi_score_by_continent"></div>
+    
+    <div class = "continentHDI container-fluid">
+    <div class="row">
+        
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3"> 
+    <h3>Avg HDI per continent</h3>
+    <span id="average_hdi_score_by_continent"></span>
     </div>
     
-    <hr>
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+    <h3>Countries with highest HDI score</h3>
+    <span id="top_10_countries"></span>
+    <br>
+    <h3>Countries with lowest HDI score</h3>
+    <span id="lowest_10_countries"></span>
+    </div>
+    
+</div>
 
-    <div class="col-md-6">
-    <h4>Countries with highest HDI score</h4>
-    <div id="top_10_countries"></div>
-    </div>
-    
-    <div class="col-md-6">
-    <h4>Countries with lowest rank</h4>
-    <div id="lowest_10_countries"></div>
-    </div>
-    
-    
-    <div class="col-md-6">
-    <h4>Number of countries per continent</h4>
-   <div id="number_of_countries"></div>
-    </div>
-</div> 
+<hr> 
+ 
+    <div class = "continentExpectancy container-fluid">
+    <div class="row">
 
-
-      <div class="col-md-12">
-    <h4>Average Life Expectancy per Continent</h4>
-   <div id="life_expectancy_average"></div>
+     <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3">
+     <h3>Average Life Expectancy per Continent</h3>
+     <div id="life_expectancy_average"></div>
+    </div>
+     
+     <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+    <h3>Countries with highest life expectancy</h3>
+    <span id="top_10_expectancy"></span>
+    <br>
+    <h3>Countries with lowest life expectancy</h3>
+    <span id="lowest_10_expectancy"></span>
     </div>
   
-
-<div class="col-md-6">
-    <h4>Countries with highest life expectancy</h4>
-    <div id="top_10_expectancy"></div>
-    </div>
+  </div>
+  </div>
    
    <div class="col-md-12">
     <h4>Gross National Income Per Country</h4>
@@ -84,12 +168,37 @@
      <div class= "col-md-8" id="show_life_expectancy_to_HDI_correlation"></div>
      <div class = "col-md-4">
      <p>This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
+     <ol>
+         <li>Africa = Pink</li>
+         <li>Asia = Blue</li>
+         <li>Europe = Orange</li>
+         <li>Oceania = Yellow</li>
+         <li>South America = Red</li>
+         <li>North America = Green</li>
+     </ol>
      </div>
     </div>
     
      <div class="col-md-12">
      <h4>Correlation between Gross National Income and HDI</h4>
      <div class= "col-md-8" id="show_GNI_to_HDI_correlation"></div>
+     <div class = "col-md-4">
+     <p>This chart indicates that median GNI levels correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.  
+     <ol>
+         <li>Africa = Pink</li>
+         <li>Asia = Blue</li>
+         <li>Europe = Orange</li>
+         <li>Oceania = Yellow</li>
+         <li>South America = Red</li>
+         <li>North America = Green</li>
+     </ol>
+    </p>
+     </div>
+    </div>
+    
+    <div class="col-md-12">
+     <h4>Correlation between Mean Number of Education Years and HDI</h4>
+     <div class= "col-md-8" id="show_Education_to_HDI_correlation"></div>
      <div class = "col-md-4">
      <p>This chart indicates that median GNI levels correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.  
      <ol>

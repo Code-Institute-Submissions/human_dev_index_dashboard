@@ -60,3 +60,57 @@ dc.numberDisplay("average_hdi_score")
         .group(Human_Development_Index);
 
 }
+
+function display_rank(ndx){
+        var rank_dim = ndx.dimension(dc.pluck('country'));
+        var rank_of_country = rank_dim.group().reduceCount(dc.pluck('hdi_rank'));
+        
+        console.log(rank_of_country.all());
+
+      dc.numberDisplay("#display_rank")
+        .formatNumber(d3.format(",")
+        .group(rank_of_country));
+}
+
+//World Chart:
+  
+        let country_dim = ndx.dimension(dc.pluck('country'));
+        let country_group = country_dim.group();
+        
+        console.log(country_group.all());
+        
+        dc.geoChoroplethChart("#map_of_countries")
+            .width(600)
+            .height(330)
+            .dimension(country_dim)
+            .group(country_group)
+            .colors(["#E2F2FF", "#C4E4FF", "#9ED2FF", "#81C5FF", "#6BBAFF", "#51AEFF", "#36A2FF", "#1E96FF", "#0089FF", "#7C151D"])
+            .colorDomain([0, 1])
+            .projection(d3.geo.mercator()
+                .scale(600)
+                .translate([340, 150]))
+            .title(function (p) {
+                return "country: " + p["key"];
+                  
+            });"></a>
+            
+            
+//Number of countries per continent. 
+function number_of_countries(ndx) {
+  
+   var continent_dim = ndx.dimension(dc.pluck('continent'));
+   var number_of_countries = continent_dim.group().reduceCount(dc.pluck('country'));
+   
+   dc.barChart("#number_of_countries")
+            .width(900)
+            .height(300)
+            .margins({top: 10, right: 50, bottom: 50, left: 50})
+            .dimension(continent_dim)
+            .group(number_of_countries)
+            .transitionDuration(500)
+            .x(d3.scale.ordinal())
+            .xUnits(dc.units .ordinal)
+            .xAxisLabel("Continent")
+            .yAxisLabel("Countries")
+            .yAxis().ticks(20);
+}
