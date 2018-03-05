@@ -47,7 +47,7 @@ body {
 }
 
 .scoreSection {
-    background-image:url(./images/earth.jpeg);
+    background-image:url(/static/images/earth.jpeg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
