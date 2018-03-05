@@ -23,8 +23,13 @@ queue()
         choose_by_country(ndx);
         life_expectancy_average(ndx, "#life_expectancy_average");
         average_income_by_continent(ndx, "#average_income_by_continent");
+        average_education_by_continent(ndx, "#average_education_by_continent");
         top_10_expectancy(ndx);
         lowest_10_expectancy(ndx);
+        top_10_income(ndx);
+        lowest_10_income(ndx);
+        top_10_education(ndx);
+        lowest_10_education(ndx);
         display_life_expectancy(ndx);
         display_gross_income(ndx);
         display_mean_education(ndx);
@@ -227,7 +232,7 @@ function life_expectancy_average(ndx, element) {
        dc.barChart(element)
         .width(700)
         .height(500)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(birth_by_continent)
         .valueAccessor(function(d){
@@ -275,6 +280,85 @@ function lowest_10_expectancy(ndx) {
         .cap(5)
         .othersGrouper(false)
         .xAxis().ticks(10);
+}
+
+
+function top_10_income(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var income_rank_group = top_country_dim.group().reduceSum(dc.pluck('gross_national_income_per_capita'));
+
+  
+  dc.rowChart("#top_10_income")
+        .width(400)
+        .height(200)
+        .dimension(top_country_dim)
+        .group(income_rank_group)
+        .cap(5)
+        .othersGrouper(false)
+        .xAxis().ticks(5);
+}
+
+function lowest_10_income(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var income_rank_group = top_country_dim.group().reduceSum(dc.pluck('gross_national_income_per_capita'));
+
+  
+  dc.rowChart("#lowest_10_income")
+        .width(400)
+        .height(200)
+        .dimension(top_country_dim)
+        .group(income_rank_group)
+        .ordering(function(d){ return d.value; })
+        .cap(5)
+        .othersGrouper(false)
+        .xAxis().ticks(5);
+}
+
+//education by continent /////
+
+function average_education_by_continent(ndx, element) {
+  let continent_dim = ndx.dimension(dc.pluck('continent'));
+  
+  let education_by_continent = continent_dim.group().reduce(
+        function (p, v) {
+            p.count++;
+            p.total += v.mean_years_of_education;
+            p.average = p.total / p.count;
+            return p;
+        },
+        function (p, v) {
+            p.count--;
+            if(p.count > 0){
+                p.total -= v.mean_years_of_education;
+                p.average = p.total / p.count; 
+            }else{
+                p.total = 0;
+                p.average = 0;
+            }
+            return p;
+        },
+        function (){
+            return {count:0, total:0, average:0};
+        });
+        
+        
+       dc.barChart(element)
+        .width(700)
+        .height(500)
+        .margins({top: 10, right: 50, bottom: 50, left: 50})
+        .dimension(continent_dim)
+        .group(education_by_continent)
+        .valueAccessor(function(d){
+            return d.value.average;
+        })
+        .transitionDuration(500)
+        .x(d3.scale.ordinal())
+        .xUnits(dc.units.ordinal)
+        .xAxisLabel("Continents")
+        .yAxisLabel("Avg Education Years")
+        .yAxis().ticks(20);
 }
 
 
@@ -342,7 +426,7 @@ let continent_dim = ndx.dimension(dc.pluck('continent'));
        dc.barChart(element)
         .width(700)
         .height(500)
-        .margins({top: 10, right: 50, bottom: 30, left: 50})
+        .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(income_by_continent)
         .valueAccessor(function(d){
@@ -478,4 +562,38 @@ function show_Education_to_HDI_correlation(ndx) {
         .group(educationHDIGroup)
         .margins({top: 10, right: 50, bottom: 75, left: 75});
         
+}
+
+function top_10_education(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var education_rank_group = top_country_dim.group().reduceSum(dc.pluck('mean_years_of_education'));
+
+  
+  dc.rowChart("#top_10_education")
+        .width(400)
+        .height(200)
+        .dimension(top_country_dim)
+        .group(education_rank_group)
+        .cap(5)
+        .othersGrouper(false)
+        .xAxis().ticks(10);
+}
+
+
+function lowest_10_education(ndx) {
+  
+  var top_country_dim = ndx.dimension(dc.pluck('country'));
+  var education_rank_group = top_country_dim.group().reduceSum(dc.pluck('mean_years_of_education'));
+
+  
+  dc.rowChart("#lowest_10_education")
+        .width(400)
+        .height(200)
+        .dimension(top_country_dim)
+        .group(education_rank_group)
+        .ordering(function(d){ return d.value; })
+        .cap(5)
+        .othersGrouper(false)
+        .xAxis().ticks(10);
 }

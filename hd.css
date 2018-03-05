@@ -61,3 +61,10 @@ body {
     color: white;
 }
 
+.correlationP {
+    font-size: 2rem;
+}
+
+.correlationList {
+    font-size: 1.5rem;
+}

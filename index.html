@@ -113,11 +113,90 @@
    </div>
    
    <br>
-    
- <div id="continentSection">
+   
+   <div id="continentSection">
     <div class="row">
     <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
     <h2>Continent Specific Data</h2>
+   
+    <div id="correlationSection">
+    
+    <div class="row">
+    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+    <h3>Correlations between the 3 primary dimensions</h3>
+   <br>
+    
+    <div class = "correlationLife container-fluid">
+    <div class="row">
+     
+     <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
+     <h3>Correlation between Life Expectancy and HDI</h3>
+     <span id="show_life_expectancy_to_HDI_correlation"></span>
+     </div>
+    <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
+    <h3>Findings</h3>
+    <p class="correlationP">This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
+    <br>
+    <h4>Key</h4>
+    <ul class ="correlationList">
+         <li>Africa = Pink</li>
+         <li>Asia = Blue</li>
+         <li>Europe = Orange</li>
+         <li>Oceania = Yellow</li>
+         <li>South America = Red</li>
+         <li>North America = Green</li>
+     </ul>
+     </div>
+    </div>
+    
+    <br>
+    <hr>
+    <div class = "correlationIncome container-fluid">
+    <div class="row">
+    
+     <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
+     <h3>Correlation between Gross National Income and HDI</h3>
+     <span id="show_GNI_to_HDI_correlation"></span>
+     </div>
+     <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
+     <h3>Findings</h3>
+     <p class="correlationP">This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores. The highest GNI scores do not correlate to the highest HDI scores. </p>  
+     <br>
+     <ul class ="correlationList">
+         <li>Africa = Pink</li>
+         <li>Asia = Blue</li>
+         <li>Europe = Orange</li>
+         <li>Oceania = Yellow</li>
+         <li>South America = Red</li>
+         <li>North America = Green</li>
+     </ul>
+     </div>
+    </div>
+    <br>
+    <hr>
+    <div class = "correlationEducation container-fluid">
+    <div class="row">
+    
+    <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
+    <h3>Correlation between Mean Number of Education Years and HDI</h3>
+    <span class= "col-md-8" id="show_Education_to_HDI_correlation"></span>
+    </div>
+    <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
+    <h3>Findings</h3>
+     <p class="correlationP">This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p> 
+     <br>
+     <ul class ="correlationList">
+         <li>Africa = Pink</li>
+         <li>Asia = Blue</li>
+         <li>Europe = Orange</li>
+         <li>Oceania = Yellow</li>
+         <li>South America = Red</li>
+         <li>North America = Green</li>
+     </ul>
+     </div>
+    </div>
+
+</div>    
     
     <div class = "continentHDI container-fluid">
     <div class="row">
@@ -157,63 +236,50 @@
   
   </div>
   </div>
+  
+  <hr>
+  
+  <div class = "continentIncome container-fluid">
+    <div class="row">
    
-   <div class="col-md-12">
-    <h4>Gross National Income Per Country</h4>
+   <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3">
+    <h3>Gross National Income Per Continent</h3>
    <div id="average_income_by_continent"></div>
     </div>
     
-     <div class="col-md-12">
-     <h4>Correlation between Life Expectancy and HDI</h4>
-     <div class= "col-md-8" id="show_life_expectancy_to_HDI_correlation"></div>
-     <div class = "col-md-4">
-     <p>This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
-     <ol>
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ol>
-     </div>
+     <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+    <h3>Countries with highest gross income</h3>
+    <span id="top_10_income"></span>
+    <br>
+    <h3>Countries with lowest gross income</h3>
+    <span id="lowest_10_income"></span>
+    </div>
+  
+  </div>
+  </div>
+  
+    <div class = "continentEducation container-fluid">
+    <div class="row">
+        
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3"> 
+    <h3>Mean number of education years per continent</h3>
+    <span id="average_education_by_continent"></span>
     </div>
     
-     <div class="col-md-12">
-     <h4>Correlation between Gross National Income and HDI</h4>
-     <div class= "col-md-8" id="show_GNI_to_HDI_correlation"></div>
-     <div class = "col-md-4">
-     <p>This chart indicates that median GNI levels correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.  
-     <ol>
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ol>
-    </p>
-     </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+    <h3>Countries with most educational years</h3>
+    <span id="top_10_education"></span>
+    <br>
+    <h3>Countries with fewest educational years</h3>
+    <span id="lowest_10_education"></span>
     </div>
     
-    <div class="col-md-12">
-     <h4>Correlation between Mean Number of Education Years and HDI</h4>
-     <div class= "col-md-8" id="show_Education_to_HDI_correlation"></div>
-     <div class = "col-md-4">
-     <p>This chart indicates that median GNI levels correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.  
-     <ol>
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ol>
-    </p>
-     </div>
-    </div>
+</div>
+
+<hr> 
     
-    
+   <hr>
+   
 
 <script src="jquery.js"></script>
     <script src="https://code.jquery.com/jquery.min.js"></script>
