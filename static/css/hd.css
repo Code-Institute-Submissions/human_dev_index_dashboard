@@ -68,3 +68,9 @@ body {
 .correlationList {
     font-size: 1.5rem;
 }
+
+#hdi_rank_by_country .x.axis text {
+   text-anchor: end !important;
+   transform: rotate(-90deg);
+   font-size: 0.7rem;
+}

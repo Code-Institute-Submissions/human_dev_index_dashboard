@@ -46,10 +46,10 @@ function show_country_rank(ndx) {
    var Human_Development_Index_group = country_dim.group().reduceSum(dc.pluck('Human_Development_Index'));
    
    dc.barChart("#hdi_rank_by_country")
-            .width(1200)
+            .width(1400)
             .height(300)
             .barPadding(5)
-            .margins({top: 10, right: 100, bottom: 50, left: 100})
+            .margins({top: 10, right: 100, bottom: 80, left: 100})
             .dimension(country_dim)
             .group(Human_Development_Index_group)
             .transitionDuration(500)
