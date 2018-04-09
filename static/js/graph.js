@@ -36,6 +36,7 @@ queue()
         show_life_expectancy_to_HDI_correlation(ndx);
         show_GNI_to_HDI_correlation(ndx);
         show_Education_to_HDI_correlation(ndx);
+        continent_countries(ndx);
         
         dc.renderAll();
     }
@@ -597,3 +598,18 @@ function lowest_10_education(ndx) {
         .othersGrouper(false)
         .xAxis().ticks(10);
 }
+
+/////// Pie chart //////
+
+function continent_countries(ndx) {
+
+    var group_by_continent = ndx.dimension(dc.pluck('continent'));
+    var total_countries_per_continent = group_by_continent.group();
+            
+    dc.pieChart("#countries_per_continent")
+            .height(412)
+            .radius(112)
+            .dimension(group_by_continent)
+            .group(total_countries_per_continent);
+            
+            }

@@ -1,14 +1,27 @@
 body {
            font-family: 'Karla', sans-serif;
+           background-color: #f1f3f4;
 }
 
-#introductionSection {
-    
+.introHeading {
+    margin-left: 20px;
+    padding-bottom: 20px;
+}
+
+.introductionPara {
     font-family: 'Karla', sans-serif;
     font-size: 2rem;
-    text-align: center;
+    text-align: left;
     margin-left: 20px;
     margin-right: 20px;
+}
+
+.pieContainer {
+    background-color: white;
+    text-align: center;
+    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 1.0), 0 6px 60px 0 rgba(0, 0, 0, 0.50);
+    margin-right: 20px;
+    margin-top: 20px;
 }
 
 #countrySection {
