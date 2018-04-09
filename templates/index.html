@@ -59,19 +59,19 @@
     
     <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
         <div class="card">
-        <h4>The average HDI score for your selection is: </h4><p id="average_hdi_score"></p>
+        <h3 class="cardText">The average HDI score for your selection is: </h3><p id="average_hdi_score"></p>
         </div>
         </div>
     
     <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
         <div class="card">
-        <h4>The HDI rank of your selection is: </h4><p id ="display_rank"></p>
+        <h3>The HDI rank of your selection is: </h3><p id ="display_rank"></p>
         </div>
         </div>
         
      <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
         <div class="card">
-        <h4>The life expectancy rate of your selection is: </h4><p id="display_life_expectancy"></p>
+        <h3>The life expectancy rate of your selection is: </h3><p id="display_life_expectancy"></p>
         </div>
         </div>
     
@@ -86,13 +86,13 @@
         
     <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
         <div class="card">
-        <h4>The gross annual income per capita for your selection is: </h4><p id="display_gross_income"></p>
+        <h3>The gross annual income per capita for your selection is: </h3><p id="display_gross_income"></p>
         </div>
         </div>
         
     <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
         <div class="card">
-        <h4>The mean years of education for adults 25+ for your selection is: </h4><p id="display_mean_education"></p>
+        <h3>The mean years of education for adults 25+ for your selection is: </h3><p id="display_mean_education"></p>
         </div>
         </div>
         
@@ -107,87 +107,81 @@
    <br>
    
    <div id="continentSection">
+    <div class="container-fluid">
     <div class="row">
-    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+    <div class="col-12 text-center">
     <h2>Continent Specific Data</h2>
-   
+    <br>
     <div id="correlationSection">
     
+    <div class="container-fluid">
     <div class="row">
-    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
-    <h3>Correlations between the 3 primary dimensions</h3>
-   <br>
+        
+        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
+        <div class="card correlationCard">
+        <h3 class="correlateHeading">Correlation between Life Expectancy and HDI</h3>
+        <br>
+        <span id="show_life_expectancy_to_HDI_correlation"></span>
+        <h3>Findings</h3>
+        <p class="correlationP">This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
+        <h4>Key</h4>
+        <ul class ="correlationList">
+             <li class="Africa">Africa = Pink</li>
+             <li class="Asia">Asia = Blue</li>
+             <li class="Europe">Europe = Orange</li>
+             <li class="Ocenaia">Oceania = Yellow</li>
+             <li class="SA">South America = Red</li>
+             <li class="NA">North America = Green</li>
+         </ul>
+         </div>
+         </div>
+
+        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
+        <div class="card correlationCard">
+        <h3  class="correlateHeading">Correlation between Gross National Income and HDI</h3>
+        <br>
+        <span id="show_GNI_to_HDI_correlation"></span>
+        <h3>Findings</h3>
+        <p class="correlationP">This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.</p>
+        <h4>Key</h4>
+        <ul class ="correlationList">
+             <li class="Africa">Africa = Pink</li>
+             <li class="Asia">Asia = Blue</li>
+             <li class="Europe">Europe = Orange</li>
+             <li class="Ocenaia">Oceania = Yellow</li>
+             <li class="SA">South America = Red</li>
+             <li class="NA">North America = Green</li>
+         </ul>
+         </div>
+         </div>
     
-    <div class = "correlationLife container-fluid">
-    <div class="row">
-     
-     <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
-     <h3>Correlation between Life Expectancy and HDI</h3>
-     <span id="show_life_expectancy_to_HDI_correlation"></span>
-     </div>
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
-    <h3>Findings</h3>
-    <p class="correlationP">This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
-    <br>
-    <h4>Key</h4>
-    <ul class ="correlationList">
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ul>
-     </div>
     </div>
-    
-    <br>
-    <hr>
-    <div class = "correlationIncome container-fluid">
-    <div class="row">
-    
-     <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
-     <h3>Correlation between Gross National Income and HDI</h3>
-     <span id="show_GNI_to_HDI_correlation"></span>
-     </div>
-     <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
-     <h3>Findings</h3>
-     <p class="correlationP">This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores. The highest GNI scores do not correlate to the highest HDI scores. </p>  
-     <br>
-     <ul class ="correlationList">
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ul>
-     </div>
     </div>
     <br>
-    <hr>
-    <div class = "correlationEducation container-fluid">
+    <div class="container-fluid">
     <div class="row">
-    
-    <div class="col-lg-8 col-sm-8 col-xs-12 text-left mb-3">
-    <h3>Correlation between Mean Number of Education Years and HDI</h3>
-    <span class= "col-md-8" id="show_Education_to_HDI_correlation"></span>
-    </div>
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-left mb-3">
-    <h3>Findings</h3>
-     <p class="correlationP">This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p> 
-     <br>
-     <ul class ="correlationList">
-         <li>Africa = Pink</li>
-         <li>Asia = Blue</li>
-         <li>Europe = Orange</li>
-         <li>Oceania = Yellow</li>
-         <li>South America = Red</li>
-         <li>North America = Green</li>
-     </ul>
-     </div>
-    </div>
-</div>  
+        
+        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
+        <div class="card correlationCard">
+        <h3 class="correlateHeading">Correlation between Mean Number of Education Years and HDI</h3>
+        <br>
+        <span id="show_Education_to_HDI_correlation"></span>
+        <h3>Findings</h3>
+        <p class="correlationP">This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p>
+        <h4>Key</h4>
+        <ul class ="correlationList">
+             <li class="Africa">Africa = Pink</li>
+             <li class="Asia">Asia = Blue</li>
+             <li class="Europe">Europe = Orange</li>
+             <li class="Ocenaia">Oceania = Yellow</li>
+             <li class="SA">South America = Red</li>
+             <li class="NA">North America = Green</li>
+         </ul>
+         </div>
+         </div>
+
+</div>
+</div>
 <br>
 <hr>
     

@@ -33,6 +33,10 @@ body {
     margin-top: 20px;
 }
 
+#countries_per_continent {
+    top: 50%;
+    left: 50%;
+}
 
 #countrySection {
      
@@ -77,26 +81,31 @@ body {
 }
 
 .scoreSection {
-    background-image:url(/static/images/earth.jpeg);
+    background-image:url(/static/images/globe.jpeg);
     background-size: cover;
     background-attachment: fixed;
     background-position: center;
     background-repeat: no-repeat;
     padding-bottom: 30px;
-    -webkit-filter: opacity(0.7);
     color: white;
 }
 
-.card {
-    color: white;
+.correlationCard {
+    color: black;
+    background-color: white;
+    padding: 20px 20px 20px 20px;
 }
 
 .correlationP {
-    font-size: 2rem;
+    font-size: 1.5rem;
+}
+
+.correlateHeading {
+    text-align: center;
 }
 
 .correlationList {
-    font-size: 1.5rem;
+    font-size: 1.2rem;
 }
 
 #hdi_rank_by_country .x.axis text {

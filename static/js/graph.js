@@ -442,8 +442,8 @@ function show_life_expectancy_to_HDI_correlation(ndx) {
 
 
   dc.scatterPlot("#show_life_expectancy_to_HDI_correlation")
-        .width(800)
-        .height(400)
+        .width(600)
+        .height(300)
         .x(d3.scale.linear().domain([minExpectancy,maxExpectancy]))
         .brushOn(true)
         .symbolSize(8)
@@ -483,8 +483,8 @@ function show_GNI_to_HDI_correlation(ndx) {
     let maxGNI = lDim.top(1)[0].gross_national_income_per_capita;
 
   dc.scatterPlot("#show_GNI_to_HDI_correlation")
-        .width(800)
-        .height(400)
+        .width(600)
+        .height(300)
         .x(d3.scale.linear().domain([minGNI,maxGNI]))
         .brushOn(true)
         .symbolSize(8)
@@ -522,8 +522,8 @@ function show_Education_to_HDI_correlation(ndx) {
     let maxEdu = lDim.top(1)[0].mean_years_of_education;
 
   dc.scatterPlot("#show_Education_to_HDI_correlation")
-        .width(800)
-        .height(400)
+        .width(600)
+        .height(300)
         .x(d3.scale.linear().domain([minEdu,maxEdu]))
         .brushOn(true)
         .symbolSize(8)
