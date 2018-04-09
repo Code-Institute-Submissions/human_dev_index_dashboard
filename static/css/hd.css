@@ -33,11 +33,6 @@ body {
     margin-top: 20px;
 }
 
-#countries_per_continent {
-    top: 50%;
-    left: 50%;
-}
-
 #countrySection {
      
     font-family: 'Karla', sans-serif;
@@ -93,11 +88,21 @@ body {
 .correlationCard {
     color: black;
     background-color: white;
+    margin: 20px 20px 20px 20px;
     padding: 20px 20px 20px 20px;
 }
 
 .correlationP {
     font-size: 1.5rem;
+    color: black;
+}
+
+.correlationFingingsCard {
+    text-align: left;
+    background-color: white;
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    height: 600px;
 }
 
 .correlateHeading {
@@ -108,9 +113,12 @@ body {
     font-size: 1.2rem;
 }
 
-#hdi_rank_by_country .x.axis text {
-   text-anchor: end !important;
-   transform: rotate(-90deg);
-   font-size: 0.7rem;
+#HDIcontinentSection {
+    background-color: white;
+     margin: 20px 20px 20px 20px;
+     padding: 20px 20px 20px 20px;
 }
 
+.fa fa-graduation-cap fa-3x{
+    color: #9ECAE1;
+}

@@ -20,7 +20,7 @@
 
 </head>
 <body> 
-    
+
     <div id="container-fluid">
     <div class="row">
     
@@ -45,7 +45,7 @@
     </div>
     <hr>
     
-    <div id = "countrySection">
+<div id = "countrySection">
     <div class="row">
     <div class="col-xs-12 col-sm-12 col-lg-12 text-center">
     <div class = "scoreSection">
@@ -106,12 +106,38 @@
    </div>
    <br>
    
-   <div id="continentSection">
+    
+    <div id="HDIcontinentSection">
     <div class="container-fluid">
     <div class="row">
     <div class="col-12 text-center">
     <h2>Continent Specific Data</h2>
+    </div>
+    <div class="card">
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-left">
+    <h3>Avg HDI per continent</h3>
+    <span id="average_hdi_score_by_continent"></span>
+    </div>
+    <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+    <h3>Countries with highest HDI score</h3>
+    <span id="top_10_countries"></span>
     <br>
+    <h3>Countries with lowest HDI score</h3>
+    <span id="lowest_10_countries"></span>
+    </div>
+
+</div>
+</div>
+</div>
+</div>
+</div>
+ 
+
+   
+   
+   <div id="continentSection">
+    <div class="container-fluid">
+    <div class="row">
     <div id="correlationSection">
     
     <div class="container-fluid">
@@ -122,8 +148,6 @@
         <h3 class="correlateHeading">Correlation between Life Expectancy and HDI</h3>
         <br>
         <span id="show_life_expectancy_to_HDI_correlation"></span>
-        <h3>Findings</h3>
-        <p class="correlationP">This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
         <h4>Key</h4>
         <ul class ="correlationList">
              <li class="Africa">Africa = Pink</li>
@@ -141,8 +165,6 @@
         <h3  class="correlateHeading">Correlation between Gross National Income and HDI</h3>
         <br>
         <span id="show_GNI_to_HDI_correlation"></span>
-        <h3>Findings</h3>
-        <p class="correlationP">This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.</p>
         <h4>Key</h4>
         <ul class ="correlationList">
              <li class="Africa">Africa = Pink</li>
@@ -157,17 +179,16 @@
     
     </div>
     </div>
+    
     <br>
     <div class="container-fluid">
     <div class="row">
         
-        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
+        <div class="col-sm-6 col-xs-12 text-left"> 
         <div class="card correlationCard">
         <h3 class="correlateHeading">Correlation between Mean Number of Education Years and HDI</h3>
         <br>
         <span id="show_Education_to_HDI_correlation"></span>
-        <h3>Findings</h3>
-        <p class="correlationP">This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p>
         <h4>Key</h4>
         <ul class ="correlationList">
              <li class="Africa">Africa = Pink</li>
@@ -179,35 +200,33 @@
          </ul>
          </div>
          </div>
+            
+        <div class="col-sm-6 col-xs-12 text-left"> 
+        <div class="card correlationFingingsCard">
+        <h3 class="correlateHeading">Findings</h3>
+        <br>
+        <p class="correlationP"><i class="fa fa-graduation-cap fa-3x"></i><br>This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p>
+        <br>
+        <p class="correlationP"><i class="fa fa-money fa-3x"></i><br>This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.</p>
+        <br>
+        <p class="correlationP"><i class="fa fa-heartbeat fa-3x"></i><br>This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
+         </div>
+         </div>
+</div>
+</div>
 
 </div>
 </div>
+</div>
+</div>
+</div>
+
 <br>
 <hr>
-    
-    <div class = "continentHDI container-fluid">
-    <div class="row">
-        
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3"> 
-    <h3>Avg HDI per continent</h3>
-    <span id="average_hdi_score_by_continent"></span>
-    </div>
-    
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
-    <h3>Countries with highest HDI score</h3>
-    <span id="top_10_countries"></span>
-    <br>
-    <h3>Countries with lowest HDI score</h3>
-    <span id="lowest_10_countries"></span>
-    </div>
-    
-</div>
 
-<br>
-<hr> 
- 
     <div class = "continentExpectancy container-fluid">
     <div class="row">
+        
 
      <div class="col-lg-6 col-sm-6 col-xs-12 text-left mb-3">
      <h3>Average Life Expectancy per Continent</h3>
@@ -222,6 +241,8 @@
     <span id="lowest_10_expectancy"></span>
     </div>
   
+  </div>
+  </div>
   </div>
   </div>
   <br>
