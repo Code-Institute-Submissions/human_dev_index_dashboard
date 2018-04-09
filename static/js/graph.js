@@ -14,7 +14,6 @@ queue()
             d.mean_years_of_education = parseFloat(d["mean_years_of_education"]);
         });
         
-        show_country_rank(ndx);
         top_10_countries(ndx);
         lowest_10_countries(ndx);
         average_hdi_score(ndx, "#average_hdi_score");
@@ -39,27 +38,6 @@ queue()
         continent_countries(ndx);
         
         dc.renderAll();
-    }
-///---------------ALL COUNTRIES HDI SCORE------------------//
-function show_country_rank(ndx) {
-    
-   var country_dim = ndx.dimension(dc.pluck('country'));
-   var Human_Development_Index_group = country_dim.group().reduceSum(dc.pluck('Human_Development_Index'));
-   
-   dc.barChart("#hdi_rank_by_country")
-            .width(1400)
-            .height(300)
-            .barPadding(5)
-            .margins({top: 10, right: 100, bottom: 80, left: 100})
-            .dimension(country_dim)
-            .group(Human_Development_Index_group)
-            .transitionDuration(500)
-            .x(d3.scale.ordinal())
-            .xUnits(dc.units.ordinal)
-            .xAxisLabel("Country")
-            .yAxisLabel("HDI")
-            .yAxis().ticks(20);
-      
     }
 
 //Top 10 Countries by HDI score..................... 
