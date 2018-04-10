@@ -209,8 +209,8 @@ function life_expectancy_average(ndx, element) {
         
         
        dc.barChart(element)
-        .width(700)
-        .height(500)
+        .width(450)
+        .height(250)
         .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(birth_by_continent)
@@ -324,8 +324,8 @@ function average_education_by_continent(ndx, element) {
         
         
        dc.barChart(element)
-        .width(700)
-        .height(500)
+        .width(450)
+        .height(250)
         .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(education_by_continent)
@@ -403,8 +403,8 @@ let continent_dim = ndx.dimension(dc.pluck('continent'));
         
         
        dc.barChart(element)
-        .width(700)
-        .height(500)
+        .width(450)
+        .height(250)
         .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
         .group(income_by_continent)

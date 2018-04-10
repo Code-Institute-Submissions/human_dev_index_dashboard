@@ -92,6 +92,26 @@ body {
     padding: 20px 20px 20px 20px;
 }
 
+.barchartCard {
+  color: black;
+    background-color: white;
+    margin: 10px 10px 10px 10px;
+    padding: 10px 10px 10px 10px;
+    font-size: 1.5rem;
+    opacity: 0.8;
+}
+
+.barchartbackground {
+    background-image:url(/static/images/aurora.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding-bottom: 30px;
+    padding-top: 30px;
+    
+}
+
 .correlationP {
     font-size: 1.5rem;
     color: black;
@@ -113,12 +133,15 @@ body {
     font-size: 1.2rem;
 }
 
-#HDIcontinentSection {
-    background-color: white;
-     margin: 20px 20px 20px 20px;
-     padding: 20px 20px 20px 20px;
+#HDIcontinentSection{
+    background-image:url(/static/images/city.jpeg);
+    margin: 20px 20px 20px 20px;
+    padding: 20px 20px 20px 20px;
+    
 }
 
-.fa fa-graduation-cap fa-3x{
+.fa-graduation-cap{
     color: #9ECAE1;
 }
+
+
