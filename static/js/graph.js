@@ -403,7 +403,7 @@ let continent_dim = ndx.dimension(dc.pluck('continent'));
         
         
        dc.barChart(element)
-        .width(450)
+        .width(document.getElementById('average_income_by_continent').clientWidth)
         .height(250)
         .margins({top: 10, right: 50, bottom: 50, left: 50})
         .dimension(continent_dim)
