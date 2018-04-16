@@ -27,8 +27,6 @@ body {
 
 .pieContainer {
     background-color: white;
-    text-align: center;
-    box-shadow: 0 8px 12px 0 rgba(0, 0, 0, 1.0), 0 6px 60px 0 rgba(0, 0, 0, 0.50);
     margin-right: 20px;
     margin-top: 20px;
 }
@@ -53,6 +51,7 @@ body {
 #average_hdi_score {
     font-size: 4rem;
     color: white;
+    padding-left: 100px;
 }
 
 #display_rank {
@@ -153,5 +152,26 @@ body {
     padding: 20px 20px 20px 20px;
 }
 
+/*CSS FOR RESPONSIVE BARCHARTS*/
+
+#average_income_by_continent .x.axis text {
+   text-anchor: end !important;
+   transform: rotate(-60deg);
+}
+
+#average_hdi_score_by_continent .x.axis text {
+   text-anchor: end !important;
+   transform: rotate(-45deg);
+}
+
+#life_expectancy_average .x.axis text {
+   text-anchor: end !important;
+   transform: rotate(-45deg);
+}
+
+#average_education_by_continent .x.axis text {
+   text-anchor: end !important;
+   transform: rotate(-45deg);
+}
 
 

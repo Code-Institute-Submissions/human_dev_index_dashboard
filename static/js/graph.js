@@ -48,7 +48,7 @@ function top_10_countries(ndx) {
 
   
   dc.rowChart("#top_10_countries")
-        .width(400)
+        .width(document.getElementById('top_10_countries').clientWidth)
         .height(200)
         .dimension(top_country_dim)
         .group(hdi_rank_group)
@@ -66,7 +66,7 @@ function lowest_10_countries(ndx) {
   
   
   dc.rowChart("#lowest_10_countries")
-        .width(400)
+        .width(document.getElementById('lowest_10_countries').clientWidth)
         .height(200)
         .dimension(lowest_country_dim)
         .group(hdi_rank_group)
@@ -151,9 +151,9 @@ function average_hdi_score_by_continent(ndx, element) {
         
     
     dc.barChart(element)
-        .width(700)
+        .width(document.getElementById('average_hdi_score_by_continent').clientWidth)
         .height(500)
-        .margins({top: 10, right: 50, bottom: 50, left: 50})
+        .margins({top: 10, right: 0, bottom: 80, left: 50})
         .dimension(continent_dim)
         .group(hdi_by_continent)
         .valueAccessor(function(d){
@@ -176,6 +176,7 @@ function choose_by_country(ndx){
         let country_group = country_dim.group();
         
         dc.selectMenu("#choose_by_country")
+            .width(document.getElementById('choose_by_country').clientWidth)
             .dimension(country_dim)
             .group(country_group);
 } 
@@ -209,9 +210,9 @@ function life_expectancy_average(ndx, element) {
         
         
        dc.barChart(element)
-        .width(450)
+        .width(document.getElementById('life_expectancy_average').clientWidth)
         .height(250)
-        .margins({top: 10, right: 50, bottom: 50, left: 50})
+        .margins({top: 10, right: 50, bottom: 80, left: 50})
         .dimension(continent_dim)
         .group(birth_by_continent)
         .valueAccessor(function(d){
@@ -235,7 +236,7 @@ function top_10_expectancy(ndx) {
 
   
   dc.rowChart("#top_10_expectancy")
-        .width(400)
+        .width(document.getElementById('top_10_expectancy').clientWidth)
         .height(200)
         .dimension(top_country_dim)
         .group(expectancy_rank_group)
@@ -269,7 +270,7 @@ function top_10_income(ndx) {
 
   
   dc.rowChart("#top_10_income")
-        .width(400)
+        .width(document.getElementById('top_10_income').clientWidth)
         .height(200)
         .dimension(top_country_dim)
         .group(income_rank_group)
@@ -324,9 +325,9 @@ function average_education_by_continent(ndx, element) {
         
         
        dc.barChart(element)
-        .width(450)
+        .width(document.getElementById('average_education_by_continent').clientWidth)
         .height(250)
-        .margins({top: 10, right: 50, bottom: 50, left: 50})
+        .margins({top: 10, right: 50, bottom: 80, left: 50})
         .dimension(continent_dim)
         .group(education_by_continent)
         .valueAccessor(function(d){
@@ -405,7 +406,7 @@ let continent_dim = ndx.dimension(dc.pluck('continent'));
        dc.barChart(element)
         .width(document.getElementById('average_income_by_continent').clientWidth)
         .height(250)
-        .margins({top: 10, right: 50, bottom: 50, left: 50})
+        .margins({top: 10, right: 50, bottom: 80, left: 50})
         .dimension(continent_dim)
         .group(income_by_continent)
         .valueAccessor(function(d){
@@ -550,7 +551,7 @@ function top_10_education(ndx) {
 
   
   dc.rowChart("#top_10_education")
-        .width(400)
+        .width(document.getElementById('top_10_education').clientWidth)
         .height(200)
         .dimension(top_country_dim)
         .group(education_rank_group)
