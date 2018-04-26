@@ -1,298 +1,313 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-     <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css"/>
-     <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
-     <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
-     <link rel="stylesheet" type="text/css" href="../static/css/hd.css">
-     
-     
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
-     <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
-     <script type="text/javascript" src="../static/js/graph.js"></script>
+    <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.min.css" />
+    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" type="text/css">
+    <link href="https://fonts.googleapis.com/css?family=Karla" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="../static/css/hd.css">
+
+
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/d3/3.5.17/d3.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/crossfilter/1.3.12/crossfilter.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/dc/2.1.8/dc.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/queue-async/1.0.7/queue.min.js"></script>
+    <script type="text/javascript" src="../static/js/graph.js"></script>
 
 </head>
-<body> 
+
+<body>
 
     <div id="container-fluid">
-    <div class="row">
-    
-    
-    <div class="col-xs-8 col-sm-8 text-left">
-    <h2 class="introHeading">Introduction</h2> 
-    <p class ="introductionPara">The HDI was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone. The HDI study measures achievment within three primary dimensions and their correlating indicators; Long and Happy Life (Life Expectancy), knowledge (education) and standard of living (Gross National Income). The HDI simplifies and captures only part of what human development entails. This study does not reflect on inequalities or poverty. </p>
-    <br>
-    <h2 class="introHeading">Country Specific Data</h2>
-    <p class ="introductionPara">View the scores for a country of your choice by selecting a country from the drop down menu.</p>
-    <span id="choose_by_country"></span>
-   </div> 
-   
-    <div class="col-sm-4 text-center">
-    <span class="pieContainer"></span>
-    <p id ="countries_per_continent" %Countries per Continent></p>
+        <div class="row">
+
+
+            <div class="col-xs-8 col-sm-8 text-left">
+                <h2 class="introHeading">Introduction</h2>
+                <p class="introductionPara">The HDI was created to emphasize that people and their capabilities should be the ultimate criteria for assessing the development of a country, not economic growth alone. The HDI study measures achievment within three primary dimensions
+                    and their correlating indicators; Long and Happy Life (Life Expectancy), knowledge (education) and standard of living (Gross National Income). The HDI simplifies and captures only part of what human development entails. This study
+                    does not reflect on inequalities or poverty. </p>
+                <br>
+                <h2 class="introHeading">Country Specific Data</h2>
+                <p class="introductionPara">View the scores for a country of your choice by selecting a country from the drop down menu.</p>
+                <span id="choose_by_country"></span>
+            </div>
+
+            <div class="col-sm-4 text-center">
+                <span class="pieContainer"></span>
+                <p id="countries_per_continent" %Countries per Continent></p>
+            </div>
+
+        </div>
     </div>
-   
-    </div>
-    </div>
-   
+
     <hr>
-    
-<div id = "countrySection">
-    <div class="row">
-    <div class="col-xs-12 col-sm-12 col-lg-12 text-center">
-    <div class = "scoreSection">
-    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
-    <h2>Summary Of Country's Scores</h2>
-     <br>
+
+    <div id="countrySection">
+        <div class="row">
+            <div class="col-xs-12 col-sm-12 col-lg-12 text-center">
+                <div class="scoreSection">
+                    <div class="col-xs-10 col-sm-8 col-lg-12 text-center">
+                        <h2>Summary Of Country's Scores</h2>
+                        <br>
+                    </div>
+
+                    <div class="scoreCards1 container-fluid">
+                        <div class="row">
+
+                            <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3">
+                                <div class="card">
+                                    <h3 class="cardText">The average HDI score for your selection is: </h3>
+                                    <p id="average_hdi_score"></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3">
+                                <div class="card">
+                                    <h3>The HDI rank of your selection is: </h3>
+                                    <p id="display_rank"></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3">
+                                <div class="card">
+                                    <h3>The life expectancy rate of your selection is: </h3>
+                                    <p id="display_life_expectancy"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+
+                    <br>
+                    <br>
+
+                    <div class="scoreCards2 container-fluid">
+                        <div class="row">
+
+                            <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+                                <div class="card">
+                                    <h3>The gross annual income per capita for your selection is: </h3>
+                                    <p id="display_gross_income"></p>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3">
+                                <div class="card">
+                                    <h3>The mean years of education for adults 25+ for your selection is: </h3>
+                                    <p id="display_mean_education"></p>
+                                </div>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+
+                <br>
+                <div class="refreshButtonSection">
+                    <input class="btn btn-default refreshButton center-block" type="button" value="Refresh Page" onClick="window.location.reload()">
+                </div>
+                <br>
+
+                <br>
+                <div class="refreshButtonSection">
+                    <input class="btn btn-default refreshButton" type="button" value="Refresh Page" onClick="window.location.reload()">
+                </div>
+                <br>
+
+                <section id="HDIcontinentSection" class="bg-dark">
+                    <div class="container-fluid skillSkill">
+                        <div class="row headingSection">
+                            <div class="col-12">
+                            </div>
+                            <div class="card avgHDICard">
+                                <div class="col-lg-6 col-sm-6 col-xs-12 text-left">
+                                    <h3>Avg HDI per continent</h3>
+                                    <span id="average_hdi_score_by_continent"></span>
+                                </div>
+                                <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
+                                    <h3>Countries with highest HDI score</h3>
+                                    <span id="top_10_countries"></span>
+                                    <br>
+                                    <h3>Countries with lowest HDI score</h3>
+                                    <span id="lowest_10_countries"></span>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+            </div>
+        </div>
+        </section>
+
+
+
+
+        <div id="continentSection">
+            <div class="container-fluid">
+                <div class="row">
+                    <div id="correlationSection">
+
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-lg-6 col-sm-6 col-xs-12 text-left">
+                                    <div class="card correlationCard">
+                                        <h3 class="correlateHeading">Correlation between Life Expectancy and HDI</h3>
+                                        <br>
+                                        <span id="show_life_expectancy_to_HDI_correlation"></span>
+                                        <h4>Key</h4>
+                                        <ul class="correlationList">
+                                            <li class="Africa">Africa = Pink</li>
+                                            <li class="Asia">Asia = Blue</li>
+                                            <li class="Europe">Europe = Orange</li>
+                                            <li class="Ocenaia">Oceania = Yellow</li>
+                                            <li class="SA">South America = Red</li>
+                                            <li class="NA">North America = Green</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-lg-6 col-sm-6 col-xs-12 text-left">
+                                    <div class="card correlationCard">
+                                        <h3 class="correlateHeading">Correlation between Gross National Income and HDI</h3>
+                                        <br>
+                                        <span id="show_GNI_to_HDI_correlation"></span>
+                                        <h4>Key</h4>
+                                        <ul class="correlationList">
+                                            <li class="Africa">Africa = Pink</li>
+                                            <li class="Asia">Asia = Blue</li>
+                                            <li class="Europe">Europe = Orange</li>
+                                            <li class="Ocenaia">Oceania = Yellow</li>
+                                            <li class="SA">South America = Red</li>
+                                            <li class="NA">North America = Green</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                            </div>
+                        </div>
+
+                        <br>
+                        <div class="container-fluid">
+                            <div class="row">
+
+                                <div class="col-sm-6 col-xs-12 text-left">
+                                    <div class="card correlationCard">
+                                        <h3 class="correlateHeading">Correlation between Mean Number of Education Years and HDI</h3>
+                                        <br>
+                                        <span id="show_Education_to_HDI_correlation"></span>
+                                        <h4>Key</h4>
+                                        <ul class="correlationList">
+                                            <li class="Africa">Africa = Pink</li>
+                                            <li class="Asia">Asia = Blue</li>
+                                            <li class="Europe">Europe = Orange</li>
+                                            <li class="Ocenaia">Oceania = Yellow</li>
+                                            <li class="SA">South America = Red</li>
+                                            <li class="NA">North America = Green</li>
+                                        </ul>
+                                    </div>
+                                </div>
+
+                                <div class="col-sm-6 col-xs-12 text-left">
+                                    <div class="card correlationFingingsCard">
+                                        <h3 class="correlateHeading">Findings</h3>
+                                        <br>
+                                        <p class="correlationP"><i class="fa fa-graduation-cap fa-3x text-center"></i><br>This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years
+                                            and low GNI, which together result in a lower than average HDI score.</p>
+                                        <br>
+                                        <p class="correlationP"><i class="fa fa-money fa-3x"></i><br>This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.</p>
+                                        <br>
+                                        <p class="correlationP"><i class="fa fa-heartbeat fa-3x"></i><br>This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
-   
-    <div class = "scoreCards1 container-fluid">
-    <div class="row">
-    
-    <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
-        <div class="card">
-        <h3 class="cardText">The average HDI score for your selection is: </h3><p id="average_hdi_score"></p>
-        </div>
-        </div>
-    
-    <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
-        <div class="card">
-        <h3>The HDI rank of your selection is: </h3><p id ="display_rank"></p>
-        </div>
-        </div>
-        
-     <div class="col-lg-4 col-sm-4 col-xs-10 text-center mb-3"> 
-        <div class="card">
-        <h3>The life expectancy rate of your selection is: </h3><p id="display_life_expectancy"></p>
-        </div>
-        </div>
-    
-    </div>
-    </div>
-    
+
     <br>
-    <br>
+    <hr>
+    <!------------------New card row-->
+    <section id="skills" class="bg-dark">
+        <div class="container-fluid skillSkill">
+            <div class="row headingSection">
+                <div class="col-12">
+                    <div class="container-fluid barchartbackground">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Average Life Expectancy per Continent</h4>
+                                    <span id="life_expectancy_average"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Gross National Income Per Continent</h4>
+                                    <span id="average_income_by_continent"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Mean number of education years per continent</h4>
+                                    <span id="average_education_by_continent"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!------------------New card row-->
+    <section id="skills" class="bg-dark">
+        <div class="container-fluid skillSkill">
+            <div class="row headingSection">
+                <div class="col-12">
+                    <div class="container-fluid barchartbackground">
+                        <div class="row">
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Countries with most educational years</h4>
+                                    <span id="top_10_education"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Countries with highest gross income</h4>
+                                    <span id="top_10_income"></span>
+                                </div>
+                            </div>
+
+                            <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3">
+                                <div class="card barchartCard">
+                                    <h4>Countries with highest life expectancy</h4>
+                                    <span id="top_10_expectancy"></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
     
-    <div class = "scoreCards2 container-fluid">
-    <div class="row">
-        
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
-        <div class="card">
-        <h3>The gross annual income per capita for your selection is: </h3><p id="display_gross_income"></p>
-        </div>
-        </div>
-        
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-center mb-3"> 
-        <div class="card">
-        <h3>The mean years of education for adults 25+ for your selection is: </h3><p id="display_mean_education"></p>
-        </div>
-        </div>
-        
-    </div>
-    </div>
-   </div>
-   
-   <br>
-   <div class="refreshButtonSection">
-   <input class="btn btn-default refreshButton" type="button" value="Refresh Page" onClick="window.location.reload()">
-   </div>
-   <br>
-   
-   <section id="HDIcontinentSection" class="bg-dark">
-    <div class="container-fluid skillSkill">
-    <div class="row headingSection">
-    <div class="col-12">
-    </div>
-    <div class="card avgHDICard">
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-left">
-    <h3>Avg HDI per continent</h3>
-    <span id="average_hdi_score_by_continent"></span>
-    </div>
-    <div class="col-lg-6 col-sm-6 col-xs-12 text-center">
-    <h3>Countries with highest HDI score</h3>
-    <span id="top_10_countries"></span>
-    <br>
-    <h3>Countries with lowest HDI score</h3>
-    <span id="lowest_10_countries"></span>
-    </div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
- 
-
-   
-   
-   <div id="continentSection">
-    <div class="container-fluid">
-    <div class="row">
-    <div id="correlationSection">
-    
-    <div class="container-fluid">
-    <div class="row">
-        
-        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
-        <div class="card correlationCard">
-        <h3 class="correlateHeading">Correlation between Life Expectancy and HDI</h3>
-        <br>
-        <span id="show_life_expectancy_to_HDI_correlation"></span>
-        <h4>Key</h4>
-        <ul class ="correlationList">
-             <li class="Africa">Africa = Pink</li>
-             <li class="Asia">Asia = Blue</li>
-             <li class="Europe">Europe = Orange</li>
-             <li class="Ocenaia">Oceania = Yellow</li>
-             <li class="SA">South America = Red</li>
-             <li class="NA">North America = Green</li>
-         </ul>
-         </div>
-         </div>
-
-        <div class="col-lg-6 col-sm-6 col-xs-12 text-left"> 
-        <div class="card correlationCard">
-        <h3  class="correlateHeading">Correlation between Gross National Income and HDI</h3>
-        <br>
-        <span id="show_GNI_to_HDI_correlation"></span>
-        <h4>Key</h4>
-        <ul class ="correlationList">
-             <li class="Africa">Africa = Pink</li>
-             <li class="Asia">Asia = Blue</li>
-             <li class="Europe">Europe = Orange</li>
-             <li class="Ocenaia">Oceania = Yellow</li>
-             <li class="SA">South America = Red</li>
-             <li class="NA">North America = Green</li>
-         </ul>
-         </div>
-         </div>
-    
-    </div>
-    </div>
-    
-    <br>
-    <div class="container-fluid">
-    <div class="row">
-        
-        <div class="col-sm-6 col-xs-12 text-left"> 
-        <div class="card correlationCard">
-        <h3 class="correlateHeading">Correlation between Mean Number of Education Years and HDI</h3>
-        <br>
-        <span id="show_Education_to_HDI_correlation"></span>
-        <h4>Key</h4>
-        <ul class ="correlationList">
-             <li class="Africa">Africa = Pink</li>
-             <li class="Asia">Asia = Blue</li>
-             <li class="Europe">Europe = Orange</li>
-             <li class="Ocenaia">Oceania = Yellow</li>
-             <li class="SA">South America = Red</li>
-             <li class="NA">North America = Green</li>
-         </ul>
-         </div>
-         </div>
-            
-        <div class="col-sm-6 col-xs-12 text-left"> 
-        <div class="card correlationFingingsCard">
-        <h3 class="correlateHeading">Findings</h3>
-        <br>
-        <p class="correlationP"><i class="fa fa-graduation-cap fa-3x text-center"></i><br>This chart indicates that the highest levels of education correlate to higher HDI scores. There is also a correlation between a low number of education years and low GNI, which together result in a lower than average HDI score.</p>
-        <br>
-        <p class="correlationP"><i class="fa fa-money fa-3x"></i><br>This chart indicates that GNI levels falling into the median range correlate to the highest HDI scores, while the lowest GNI levels correlate to the lowest HDI scores.</p>
-        <br>
-        <p class="correlationP"><i class="fa fa-heartbeat fa-3x"></i><br>This chart indicates that a higher life expectancy at birth correlates to a higher HDI score.</p>
-         </div>
-         </div>
-</div>
-</div>
-
-</div>
-</div>
-</div>
-</div>
-</div>
-
-<br>
-<hr>
-<!------------------New card row-->
-<section id="skills" class="bg-dark">
- <div class="container-fluid skillSkill">
-    <div class="row headingSection">
-    <div class="col-12">
-    <div class="container-fluid barchartbackground">
-    <div class="row">
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-              <h4>Average Life Expectancy per Continent</h4>
-                <span id="life_expectancy_average"></span>
-        </div>
-        </div>
-    
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-              <h4>Gross National Income Per Continent</h4>
-              <span id="average_income_by_continent"></span>
-        </div>
-        </div>
-        
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-              <h4>Mean number of education years per continent</h4>
-            <span id="average_education_by_continent"></span>
-        </div>
-        </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-<!------------------New card row-->
-<section id="skills" class="bg-dark">
- <div class="container-fluid skillSkill">
-    <div class="row headingSection">
-    <div class="col-12">
-    <div class="container-fluid barchartbackground">
-    <div class="row">
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-              <h4>Countries with most educational years</h4>
-                <span id="top_10_education"></span>
-        </div>
-        </div>
-    
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-              <h4>Countries with highest gross income</h4>
-                <span id="top_10_income"></span>
-        </div>
-        </div>
-        
-    <div class="col-lg-4 col-sm-4 col-xs-12 text-center mb-3"> 
-        <div class="card barchartCard">
-             <h4>Countries with highest life expectancy</h4>
-             <span id="top_10_expectancy"></span>
-        </div>
-        </div>
-</div>
-</div>
-</div>
-</div>
-</div>
-</section>
-
-
-
     <script src="https://code.jquery.com/jquery.min.js"></script>
- 
+
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
 </body>
+
 </html>
