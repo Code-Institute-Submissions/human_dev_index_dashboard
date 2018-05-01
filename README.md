@@ -69,5 +69,15 @@ Tested on different devices and screen sizes. I also manually calculated a rando
 ## Hosting
 Heroku is used to host this app. The requirements.txt contains all the packages required to run the app. The Procfile communicates to Heroku how to run the app. The server used for hosting is mLab MongoDB.
 
+## Installation
+
+# Installation 
+Follow the below instructions to clone this project for Mac (commands will be slightly different for Windows). 
+In developing this project I used Cloud9. I recommend that this is used for cloning and the following instructions have been made with this in mind. 
+
+1. If you wish to create a Cloud9 account go here: <https://c9.io>
+2. Go to folder you want to put the cloned project in your terminal & type: $ git clone https://github.com/wolfenchic/feedFast.git
+2. Install the project dependancies: $ sudo pip3 install -r requirements.txt
+3. Cut ties with my github: $ git remote rm origin
 
 
