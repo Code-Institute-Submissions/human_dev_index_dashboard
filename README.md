@@ -71,12 +71,11 @@ Heroku is used to host this app. The requirements.txt contains all the packages 
 
 ## Installation
 
-# Installation 
 Follow the below instructions to clone this project for Mac (commands will be slightly different for Windows). 
 In developing this project I used Cloud9. I recommend that this is used for cloning and the following instructions have been made with this in mind. 
 
 1. If you wish to create a Cloud9 account go here: <https://c9.io>
-2. Go to folder you want to put the cloned project in your terminal & type: $ git clone https://github.com/wolfenchic/feedFast.git
+2. Go to folder you want to put the cloned project in your terminal & type: $ git clone https://github.com/wolfenchic/human_dev_index_dashboard.git
 2. Install the project dependancies: $ sudo pip3 install -r requirements.txt
 3. Cut ties with my github: $ git remote rm origin
 
